@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /t21-186/
+
+# Mengarahkan semua request ke index.php jika file/folder tidak ditemukan
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.\*)$ index.php [QSA,L]

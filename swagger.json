@@ -1,0 +1,358 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Pengelolaan Perpustakaan",
+    "version": "1.0.0",
+    "description": "API sederhana untuk mengelola data buku, anggota, dan peminjaman."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Localhost server"
+    }
+  ],
+  "paths": {
+    "/buku": {
+      "post": {
+        "summary": "Tambah data buku",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Buku"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Buku berhasil ditambahkan"
+          },
+          "400": {
+            "description": "Data tidak lengkap"
+          }
+        }
+      },
+      "get": {
+        "summary": "Ambil semua buku",
+        "responses": {
+          "200": {
+            "description": "Daftar buku",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Buku"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buku/{id}": {
+      "get": {
+        "summary": "Ambil data buku berdasarkan ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data buku ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Buku"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Buku tidak ditemukan"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update data buku berdasarkan ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Buku"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data buku berhasil diperbarui"
+          },
+          "404": {
+            "description": "Buku tidak ditemukan"
+          }
+        }
+      }
+    },
+    "/anggota": {
+      "post": {
+        "summary": "Tambah data anggota",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Anggota"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Anggota berhasil ditambahkan"
+          }
+        }
+      },
+      "get": {
+        "summary": "Ambil semua anggota",
+        "responses": {
+          "200": {
+            "description": "Daftar anggota",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Anggota"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/anggota/{id}": {
+      "get": {
+        "summary": "Ambil data anggota berdasarkan ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data anggota ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Anggota"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update data anggota berdasarkan ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Anggota"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data anggota berhasil diperbarui"
+          }
+        }
+      }
+    },
+    "/peminjaman": {
+      "post": {
+        "summary": "Tambah data peminjaman",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Peminjaman"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Peminjaman berhasil ditambahkan"
+          }
+        }
+      },
+      "get": {
+        "summary": "Ambil semua data peminjaman",
+        "responses": {
+          "200": {
+            "description": "Daftar peminjaman",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Peminjaman"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peminjaman/{id}": {
+      "get": {
+        "summary": "Ambil data peminjaman berdasarkan ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data peminjaman ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Peminjaman"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update data peminjaman berdasarkan ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Peminjaman"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data peminjaman berhasil diperbarui"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Buku": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "penulis": {
+            "type": "string"
+          },
+          "tahun": {
+            "type": "integer"
+          }
+        },
+        "required": ["name", "penulis", "tahun"]
+      },
+      "Anggota": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "nim": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "nim", "email"]
+      },
+      "Peminjaman": {
+        "type": "object",
+        "properties": {
+          "buku_id": {
+            "type": "integer"
+          },
+          "anggota_id": {
+            "type": "integer"
+          },
+          "tanggal_pinjam": {
+            "type": "string",
+            "format": "date"
+          },
+          "tanggal_kembali": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": ["buku_id", "anggota_id", "tanggal_pinjam"]
+      }
+    }
+  }
+}
